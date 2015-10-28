@@ -33,7 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Searching\GPA.cs" />
-    <Compile Include="Searching\ArrayST.cs" />
+    <Compile Include="Searching\ArraySt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,7 +7,7 @@ namespace Algs4.Test.Searching {
     public class GPATest {
 
         [Test]
-        public void OnlyAValues() {
+        public void Two_As_Two_Bs_35_Average() {
             var gpa = new GPA();
             var average = gpa.CalculateGradeAverages(
                 new List<string> {
