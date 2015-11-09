@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Searching\GPATest.cs" />
     <Compile Include="Searching\ArrayStTest.cs" />
+    <Compile Include="Graphs\GraphTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Algs4\Algs4.csproj" >

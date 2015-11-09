@@ -34,6 +34,8 @@
   <ItemGroup>
     <Compile Include="Searching\GPA.cs" />
     <Compile Include="Searching\ArraySt.cs" />
+    <Compile Include="Graphs\Graph.cs" />
+    <Compile Include="Graphs\GraphType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
