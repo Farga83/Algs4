@@ -36,6 +36,7 @@
     <Compile Include="Searching\ArraySt.cs" />
     <Compile Include="Graphs\Graph.cs" />
     <Compile Include="Graphs\GraphType.cs" />
+    <Compile Include="Graphs\Dfs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

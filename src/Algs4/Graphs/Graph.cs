@@ -6,13 +6,18 @@ namespace Algs4.Graphs {
 
         private IList<IList<int>> adj;
         private int edges;
+        private int vertices;
 
-        public Graph(GraphType graphType, IList<Tuple<int, int>> connections) {
+        public Graph(GraphType graphType, IList<Tuple<int, int>> connections, int vertices) {
             if (connections == null) {
                 throw new ArgumentNullException("connections");
             }
+            this.vertices = vertices;
             this.edges = 0;
             this.adj = new List<IList<int>>();
+            for (var i = 0; i < vertices; i++) {
+                this.adj.Add(new List<int>());
+            }
             if (graphType == GraphType.Undirected) {
                 this.AddUndirectionEdges(connections);
             } else if (graphType == GraphType.Directed) {
@@ -26,12 +31,16 @@ namespace Algs4.Graphs {
         public IList<int> Adjacent(int vertex) {
             if (vertex > adj.Count -1) {
                 var msg = String.Format(
-                    "Vertex {0} outside the bounds known vertexes",
+                    "Vertex {0} outside the bounds known vertices",
                     vertex
                 );
                 throw new ArgumentException(msg);
             }
             return adj[vertex];
+        }
+
+        public int Vertices() {
+            return this.vertices;
         }
 
         private void AddDirectedEdges(IList<Tuple<int, int>> connections) {
