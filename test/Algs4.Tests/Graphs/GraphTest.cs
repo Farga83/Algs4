@@ -22,6 +22,21 @@ namespace Algs4.Tests.Graphs {
             Assert.AreEqual(1, g.Adjacent(6).Count);
         }
 
+        [Test]
+        public void DirectedCreateIsCorrectlyBuilt() {
+            var input = CreateTestInput();
+            var g = new Graph(GraphType.Directed, input, 7);
+            Assert.AreEqual(7, g.Vertices());
+            Assert.AreEqual(5, g.Edges());
+            Assert.AreEqual(3, g.Adjacent(0).Count);
+            Assert.AreEqual(1, g.Adjacent(1).Count);
+            Assert.AreEqual(1, g.Adjacent(2).Count);
+            Assert.AreEqual(0, g.Adjacent(3).Count);
+            Assert.AreEqual(0, g.Adjacent(4).Count);
+            Assert.AreEqual(0, g.Adjacent(5).Count);
+            Assert.AreEqual(0, g.Adjacent(6).Count);
+        }
+
 
         private IList<Tuple<int, int>> CreateTestInput() {
             return new List<Tuple<int, int>> {
