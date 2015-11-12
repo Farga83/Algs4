@@ -43,6 +43,15 @@ namespace Algs4.Graphs {
             return this.vertices;
         }
 
+        public int Edges() {
+            return this.edges;
+        }
+
+        public void AddEdge(int origin, int destination) {
+            adj[origin].Add(destination);
+            edges++;
+        }
+
         private void AddDirectedEdges(IList<Tuple<int, int>> connections) {
             foreach (var connection in connections) {
                 this.AddEdge(connection.Item1, connection.Item2);
@@ -54,11 +63,6 @@ namespace Algs4.Graphs {
                 this.AddEdge(connection.Item1, connection.Item2);
                 this.AddEdge(connection.Item2, connection.Item1);
             }
-        }
-
-        private void AddEdge(int origin, int destination) {
-            adj[origin].Add(destination);
-            edges++;
         }
     }
 }
