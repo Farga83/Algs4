@@ -37,6 +37,7 @@
     <Compile Include="Graphs\Graph.cs" />
     <Compile Include="Graphs\GraphType.cs" />
     <Compile Include="Graphs\Dfs.cs" />
+    <Compile Include="Graphs\Bfs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
