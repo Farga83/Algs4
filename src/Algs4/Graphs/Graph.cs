@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Algs4.Graphs {
     public class Graph {
@@ -19,7 +20,7 @@ namespace Algs4.Graphs {
                 this.adj.Add(new List<int>());
             }
             if (graphType == GraphType.Undirected) {
-                this.AddUndirectionEdges(connections);
+                this.AddUndirectedEdges(connections);
             } else if (graphType == GraphType.Directed) {
                 this.AddDirectedEdges(connections);
             } else {
@@ -52,13 +53,22 @@ namespace Algs4.Graphs {
             edges++;
         }
 
+        public override string ToString() {
+            var builder = new StringBuilder();
+            for (int i = 0; i < this.vertices; i++) {
+                builder.Append(string.Join(" ", adj[i]));
+                builder.AppendLine();
+            }
+            return builder.ToString();
+        }
+
         private void AddDirectedEdges(IList<Tuple<int, int>> connections) {
             foreach (var connection in connections) {
                 this.AddEdge(connection.Item1, connection.Item2);
             }
         }
 
-        private void AddUndirectionEdges(IList<Tuple<int, int>> connections) {
+        private void AddUndirectedEdges(IList<Tuple<int, int>> connections) {
             foreach (var connection in connections) {
                 this.AddEdge(connection.Item1, connection.Item2);
                 this.AddEdge(connection.Item2, connection.Item1);

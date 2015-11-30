@@ -1,71 +1,65 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Algs4.Graphs {
     public class Bfs {
 
-        private IList<IList<int>> adjLists;
-        private int vertices;
-        private int edges;
+        private bool[] marked;
+        private int[] edgeTo;
+        private int count;
+        private readonly int root;
 
-        public Bfs(GraphType graphType, int v, IList<Tuple<int, int>> edges) {
-            this.vertices = v;
-            adjLists = new List<IList<int>>();
-            for (int i = 0; i < v; i++) {
-                adjLists.Add(new List<int>());
+        public Bfs(Graph graph, int root) {
+            if (graph == null) {
+                throw new ArgumentNullException("graph");
             }
-            Action<int, int> addMethod;
-            if (graphType == GraphType.Directed) {
-                addMethod = (from, to) => AddEdge(from, to);
-            } else if (graphType == GraphType.Undirected) {
-                addMethod = (from, to) => AddUndirectedEdge(from, to);
+            this.marked = new bool[graph.Vertices()];
+            this.edgeTo = Enumerable.Repeat(-1, graph.Vertices()).ToArray();
+            this.count = 0;
+            this.root = root;
+            this.BreadthFirstSearch(graph, root);
+        }
+
+        public bool Marked(int v) {
+            return this.marked[v];
+        }
+
+        public int Count() {
+            return this.count;
+        }
+
+        public bool HasPathTo(int v) {
+            return edgeTo[v] != -1;
+        }
+
+        public IEnumerable<int> PathTo(int v) {
+            if (!HasPathTo(v)) {
+                return null;
             } else {
-                var errorMsg =
-                    String.Format("Unknown graphType {0}", graphType.ToString());
-                throw new ArgumentException(errorMsg, "graphType");
-            }
-            ProcessGraph(edges, addMethod);
-        }
-
-        public void AddEdge(int from, int to) {
-            adjLists[from].Add(to);
-            edges++;
-        }
-
-        public int V() {
-            return this.vertices;
-        }
-
-        public int E() {
-            return this.edges;
-        }
-
-        public IEnumerable<int> Adj(int v) {
-            if (v > this.vertices) {
-                throw new ArgumentException("Vertice out of bounds");
-            }
-            return adjLists[v];
-        }
-
-        public override string ToString() {
-            var builder = new StringBuilder();
-            for (int i = 0; i < this.vertices; i++) {
-                builder.Append(string.Join(" ", adjLists[i]));
-                builder.AppendLine();
-            }
-            return builder.ToString();
-        }
-
-        private void ProcessGraph(IList<Tuple<int, int>> edges, Action<int, int> addMethod) {
-            foreach (var edge in edges) {
-                addMethod(edge.Item1, edge.Item2);
+                var path = new List<int>();
+                for (var x = v; x != root; x = edgeTo[x]) {
+                    path.Add(x);
+                }
+                path.Reverse();
+                return path;
             }
         }
 
-        private void AddUndirectedEdge(int from, int to) {
-            AddEdge(from, to);
-            AddEdge(to, from);
+        public void BreadthFirstSearch(Graph graph, int root) {
+            var vertices = new Queue<int>();
+            vertices.Enqueue(root);
+            marked[root] = true;
+            count++;
+            while (vertices.Count > 0) {
+                var currentVertice = vertices.Dequeue();
+                foreach (var vert in graph.Adjacent(currentVertice)) {
+                    edgeTo[vert] = currentVertice;
+                    marked[vert] = true;
+                    count++;
+                    vertices.Enqueue(vert);
+                }
+            }
         }
     }
 }

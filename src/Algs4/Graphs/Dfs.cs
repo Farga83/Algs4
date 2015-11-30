@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,6 +11,9 @@ namespace Algs4.Graphs {
         private readonly int root;
 
         public Dfs(Graph graph, int root) {
+            if (graph == null) {
+                throw new ArgumentNullException("graph");
+            }
             this.marked = new bool[graph.Vertices()];
             this.edgeTo = Enumerable.Repeat(-1, graph.Vertices()).ToArray();
             this.count = 0;
