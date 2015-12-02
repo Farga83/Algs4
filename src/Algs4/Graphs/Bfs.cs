@@ -7,6 +7,7 @@ namespace Algs4.Graphs {
 
         private bool[] marked;
         private int[] edgeTo;
+        private int[] distTo;
         private int count;
         private readonly int root;
 
@@ -16,6 +17,7 @@ namespace Algs4.Graphs {
             }
             this.marked = new bool[graph.Vertices()];
             this.edgeTo = Enumerable.Repeat(-1, graph.Vertices()).ToArray();
+            this.distTo = Enumerable.Repeat(-1, graph.Vertices()).ToArray();
             this.count = 0;
             this.root = root;
             this.BreadthFirstSearch(graph, root);
@@ -31,6 +33,10 @@ namespace Algs4.Graphs {
 
         public bool HasPathTo(int v) {
             return edgeTo[v] != -1;
+        }
+
+        public int DistanceTo(int v) {
+            return distTo[v];
         }
 
         public IEnumerable<int> PathTo(int v) {
@@ -49,15 +55,19 @@ namespace Algs4.Graphs {
         public void BreadthFirstSearch(Graph graph, int root) {
             var vertices = new Queue<int>();
             vertices.Enqueue(root);
+            distTo[root] = 0;
             marked[root] = true;
             count++;
             while (vertices.Count > 0) {
                 var currentVertice = vertices.Dequeue();
                 foreach (var vert in graph.Adjacent(currentVertice)) {
-                    edgeTo[vert] = currentVertice;
-                    marked[vert] = true;
-                    count++;
-                    vertices.Enqueue(vert);
+                    if (!marked[vert]) {
+                        edgeTo[vert] = currentVertice;
+                        distTo[vert] = distTo[currentVertice] + 1;
+                        marked[vert] = true;
+                        count++;
+                        vertices.Enqueue(vert);
+                    }
                 }
             }
         }

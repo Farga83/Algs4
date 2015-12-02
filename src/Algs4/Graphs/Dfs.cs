@@ -7,6 +7,7 @@ namespace Algs4.Graphs {
 
         private bool[] marked;
         private int[] edgeTo;
+        private int[] distTo;
         private int count;
         private readonly int root;
 
@@ -16,9 +17,10 @@ namespace Algs4.Graphs {
             }
             this.marked = new bool[graph.Vertices()];
             this.edgeTo = Enumerable.Repeat(-1, graph.Vertices()).ToArray();
+            this.distTo = Enumerable.Repeat(-1, graph.Vertices()).ToArray();
             this.count = 0;
             this.root = root;
-            this.DepthFirstSearch(graph, root);
+            this.DepthFirstSearch(graph, root, 0);
         }
 
         public bool Marked(int v) {
@@ -31,6 +33,10 @@ namespace Algs4.Graphs {
 
         public bool HasPathTo(int v) {
             return edgeTo[v] != -1;
+        }
+
+        public int DistanceTo(int v) {
+            return distTo[v];
         }
 
         public IEnumerable<int> PathTo(int v) {
@@ -47,12 +53,13 @@ namespace Algs4.Graphs {
             }
         }
 
-        private void DepthFirstSearch(Graph graph, int vertice) {
+        private void DepthFirstSearch(Graph graph, int vertice, int dist) {
             count++;
             marked[vertice] = true;
+            distTo[vertice] = dist;
             foreach (var node in graph.Adjacent(vertice)) {
                 if (!marked[node]) {
-                    DepthFirstSearch(graph, node);
+                    DepthFirstSearch(graph, node, dist + 1);
                     edgeTo[node] = vertice;
                 }
             }

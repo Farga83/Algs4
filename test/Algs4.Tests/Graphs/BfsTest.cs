@@ -1,32 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using Algs4.Graphs;
+using NUnit.Framework;
 
 namespace Algs4.Tests.Graphs {
     [TestFixture]
-    public class DfsTest {
+    public class BfsTest {
 
         [Test]
         public void UndirectedConnectionsAreMarked() {
             var input = CreateTestInput();
             var g = new Graph(GraphType.Undirected, input, 7);
-            var search = new Dfs(g, 0);
+            var search = new Bfs(g, 0);
             Assert.IsTrue(search.Marked(2));
             Assert.IsTrue(search.Marked(3));
             Assert.IsTrue(search.Marked(5));
             Assert.IsFalse(search.Marked(1));
             Assert.IsFalse(search.Marked(4));
             Assert.IsFalse(search.Marked(6));
-
         }
 
         [Test]
         public void UndirectedHasPathToAreCorrect() {
             var input = CreateTestInput();
             var g = new Graph(GraphType.Undirected, input, 7);
-            var search = new Dfs(g, 0);
+            var search = new Bfs(g, 0);
             Assert.IsTrue(search.HasPathTo(2));
             Assert.IsTrue(search.HasPathTo(3));
             Assert.IsTrue(search.HasPathTo(5));
@@ -37,14 +36,11 @@ namespace Algs4.Tests.Graphs {
         }
 
         [Test]
-        public void UndirectedPathToFiveHasTwoVertices() {
+        public void UndirectedPathToFiveHasOneVertices() {
             var input = CreateTestInput();
             var g = new Graph(GraphType.Undirected, input, 7);
-            var search = new Dfs(g, 0);
-            var path = search.PathTo(5).ToArray();
-            Assert.AreEqual(2, search.DistanceTo(5));
-            Assert.AreEqual(2, path[0]);
-            Assert.AreEqual(5, path[1]);
+            var search = new Bfs(g, 0);
+            Assert.AreEqual(1, search.DistanceTo(5));
         }
 
         private IList<Tuple<int, int>> CreateTestInput() {
