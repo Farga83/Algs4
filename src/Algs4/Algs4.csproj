@@ -41,7 +41,7 @@
     <Compile Include="Graphs\GraphType.cs" />
     <Compile Include="Graphs\Dfs.cs" />
     <Compile Include="Graphs\Bfs.cs" />
-    <Compile Include="Trees\BST.cs" />
+    <Compile Include="Trees\Bst.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
