@@ -42,6 +42,8 @@
     <Compile Include="Graphs\Dfs.cs" />
     <Compile Include="Graphs\Bfs.cs" />
     <Compile Include="Trees\Bst.cs" />
+    <Compile Include="Queues\PriorityQueue.cs" />
+    <Compile Include="Sorting\ThreeWayQuickSort.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
