@@ -44,6 +44,7 @@
     <Compile Include="Graphs\DfsTest.cs" />
     <Compile Include="Graphs\BfsTest.cs" />
     <Compile Include="Trees\BstTest.cs" />
+    <Compile Include="Lists\CycleDetectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Algs4\Algs4.csproj" >
