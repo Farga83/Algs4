@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Algs4.Trees {
     public class Bst<TKey, TValue>
@@ -36,6 +37,48 @@ namespace Algs4.Trees {
                 throw new ArgumentNullException("key");
             }
             return Get(root, key);
+        }
+
+        public IEnumerable<TValue> PreOrderTraversal() {
+            return PreOrderTraversal(root);
+        }
+
+        public IEnumerable<TValue> InorderTraversal() {
+            return InorderTraversal(root);
+        }
+
+        public IEnumerable<TValue> PostOrderTraversal() {
+            return PostOrderTraversal(root);
+        }
+
+        private IEnumerable<TValue> PostOrderTraversal(Node node) {
+            var values = new List<TValue>();
+            if (node != null) {
+                values.AddRange(PostOrderTraversal(node.Left));
+                values.AddRange(PostOrderTraversal(node.Right));
+                values.Add(node.Value);
+            }
+            return values;
+        }
+
+        private IEnumerable<TValue> PreOrderTraversal(Node node) {
+            var values = new List<TValue>();
+            if (node != null) {
+                values.Add(node.Value);
+                values.AddRange(PreOrderTraversal(node.Left));
+                values.AddRange(PreOrderTraversal(node.Right));
+            }
+            return values;
+        }
+
+        private IEnumerable<TValue> InorderTraversal(Node node) {
+            var values = new List<TValue>();
+            if (node != null) {
+                values.AddRange(InorderTraversal(node.Left));
+                values.Add(node.Value);
+                values.AddRange(InorderTraversal(node.Right));
+            }
+            return values;
         }
 
         private TValue Get(Node node, TKey key) {

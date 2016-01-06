@@ -43,6 +43,7 @@
     <Compile Include="Graphs\Bfs.cs" />
     <Compile Include="Trees\Bst.cs" />
     <Compile Include="Queues\PriorityQueue.cs" />
+    <Compile Include="Queues\MaxComparer.cs" />
     <Compile Include="Sorting\ThreeWayQuickSort.cs" />
     <Compile Include="Lists\LinkedList.cs" />
     <Compile Include="Lists\LinkedListNode.cs" />
