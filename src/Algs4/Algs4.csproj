@@ -48,6 +48,11 @@
     <Compile Include="Lists\LinkedList.cs" />
     <Compile Include="Lists\LinkedListNode.cs" />
     <Compile Include="Lists\CycleDetection.cs" />
+    <Compile Include="InterviewQuestions\ParkingLot\IVehicle.cs" />
+    <Compile Include="InterviewQuestions\ParkingLot\ParkingSpace.cs" />
+    <Compile Include="InterviewQuestions\ParkingLot\CompactCar.cs" />
+    <Compile Include="InterviewQuestions\ParkingLot\CompactSpace.cs" />
+    <Compile Include="InterviewQuestions\ParkingLot\Level.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
